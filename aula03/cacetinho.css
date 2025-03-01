@@ -1,0 +1,14 @@
+.textinho{
+    position: relative;
+    display: inline;
+    display: flex;
+    justify-content: space-evenly;
+    align-items:center;
+    color: darkred;
+    font-size: 27px;
+    list-style: none;
+    padding-left: 420px;
+    padding-right: 420px;
+    left: 0%;
+    top: 0%;
+}
