@@ -8,6 +8,30 @@
 
     <style>
 
+        .imagem {
+            position: relative;
+            top: 480px;
+            left: 430px;
+            width: 220px;
+            height: 300px;
+        }
+
+        .imagem2 {
+            position: relative;
+            top: 480px;
+            left: 590px;
+            width: 220px;
+            height: 300px;
+        }
+
+        .imagem3 {
+            position: relative;
+            top: 480px;
+            left: 750px;
+            width: 220px;
+            height: 300px;
+        }
+
         body{
             background-color: lightgray
         }
@@ -18,8 +42,15 @@
         }
 
         .titulo {
-            position: absolute;
-            left: 880px
+            position: relative;
+            top: 80px;
+            left: 850px
+        }
+
+        .titulo2 {
+            position: relative;
+            top: 450px;
+            left: 890px;
         }
 
 
@@ -39,7 +70,7 @@
             margin: 2px;
         }
 
-        div {
+        .divcabeçario {
             background: #f2f5d5;
             font-size: 40px;
             padding: 20px;
@@ -51,13 +82,10 @@
 
         .div2 { 
 
-         width: 1860px;
-         height: 55px;
+         position: absolute;
+         width: 1904px;
+         height: 70px;
          background: lightskyblue
-        }
-
-        .divpadrão {
-            background: lightgray;
         }
 
     </style>
@@ -66,13 +94,13 @@
 
 <body>
 
-    <div>
+    <div class="divcabeçario">
 
         <img width="130" height="150"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/1822px-ISO_C%2B%2B_Logo.svg.png">
+         src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/1822px-ISO_C%2B%2B_Logo.svg.png">
          <p class="absolute">C++ e Java</p>
          <img class="javinha" width="200" height="150"
-            src="https://images.vexels.com/media/users/3/166401/isolated/preview/b82aa7ac3f736dd78570dd3fa3fa9e24-icone-da-linguagem-de-programacao-java.png">
+         src="https://images.vexels.com/media/users/3/166401/isolated/preview/b82aa7ac3f736dd78570dd3fa3fa9e24-icone-da-linguagem-de-programacao-java.png">
 
     </div>
 
@@ -89,20 +117,35 @@
 
          </div>
 
+         <div>
+
             <h1 class="titulo">Introdução</h1>
+
+         </div>
+
               <h2 class="texto">C++ (em português: lê-se "cê mais mais", em inglês lê-se see plus plus) é uma linguagem 
                 de programação compilada multi-paradigma (seu suporte inclui linguagem imperativa, orientada a objetos e genérica)
                 e de uso geral. Desde os anos 1990 é uma das linguagens comerciais mais populares, sendo bastante usada também na
                 academia por seu grande desempenho e base de utilizadores.</h2>
 
-                <h2 class="texto2" >Java é uma linguagem de programação orientada a objetos desenvolvida na década de 90 por uma 
+              <h2 class="texto2" >Java é uma linguagem de programação orientada a objetos desenvolvida na década de 90 por uma 
                 equipe de programadores chefiada por James Gosling, na empresa Sun Microsystems. Em 2008 o Java foi adquirido pela
                 empresa Oracle Corporation.</h2>
 
-                <h2 class="texto3">Java foi desenvolvida por um grupo de pesquisadores da SUN Microsystems por volta de 1990,
-                 pouco antes da explosão da Internet. Essa linguagem possui estrutura muito semelhante à da linguagem C, da qual
-                 descende imediatamente. Java tem em comum com a linguagem C++ o fato de ser orientada a objetos e mantém com esta
-                 uma alto grau de semelhança.</h2>
+              <h2 class="texto3">Java foi desenvolvida por um grupo de pesquisadores da SUN Microsystems por volta de 1990,
+               pouco antes da explosão da Internet. Essa linguagem possui estrutura muito semelhante à da linguagem C, da qual
+               descende imediatamente. Java tem em comum com a linguagem C++ o fato de ser orientada a objetos e mantém com esta
+               uma alto grau de semelhança.</h2>
+
+        <div>
+
+           <h1 class="titulo2"> Livros </h1>
+           <img class="imagem" src="imagens/book1.jpg">
+           <img class="imagem2" src="imagens/book2.jpg">
+           <img class="imagem3" src="imagens/book3.jpg">
+
+
+        </div>
 </body>
 
 </html>
