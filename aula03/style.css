@@ -48,3 +48,49 @@
     left: 0px;
     top: 560px;
   }
+  .nome {
+    position: relative;
+    display: inline;
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    border: solid 1px red;
+    width: 169px;
+    height: 0px;
+  }
+  .email {
+    position: absolute;
+    display: inline;
+    display: flex;
+    align-items: center;
+    left: 234px;
+    top: 0px;
+    font-size: 30px;
+    border: solid 1px red;
+    width: 170px;
+    height: 0px;
+  }
+  .nome1 {
+    position: relative;
+    display: inline;
+    display: flex;
+    align-items: center;
+    color: black;
+    font-size: 16px;
+    border: solid 1px red;
+    width: 169px;
+    height: 0px;
+  }
+  .email1 {
+    position: absolute;
+    display: inline;
+    display: flex;
+    align-items: center;
+    color: black;
+    left: 234px;
+    top: 64px;
+    font-size: 16px;
+    border: solid 1px red;
+    width: 170px;
+    height: 0px;
+  }
