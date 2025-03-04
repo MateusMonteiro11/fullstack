@@ -9,28 +9,41 @@
 
     <style>
 
-        .imagem {
+        .livros {
+            position: relative;
+            display: inline;
+            display: flex;
+            justify-content: space-evenly;
+            align-items:center;
+            list-style: none;
+            padding-left: 0px;
+            padding-right: 217px;
+            left: 0%;
+            top: 0px;
+        }
+
+        .imagem1 {
             position: relative;
             top: 480px;
-            left: 24%;
             width: 220px;
             height: 300px;
+            left: 0%
         }
 
         .imagem2 {
             position: relative;
             top: 480px;
-            left: 28%;
             width: 220px;
             height: 300px;
+            left: 15%
         }
 
         .imagem3 {
             position: relative;
             top: 480px;
-            left: 32%;
             width: 220px;
             height: 300px;
+            left: 32%;
         }
 
         body{
@@ -39,7 +52,30 @@
         
         .javinha {
             position: absolute;
-            left: 87%;
+            left: 90%;
+            top: 15px;
+        }
+
+        .cezão {
+            position: absolute;
+            top: 15px;
+            left: 0.5%
+        }
+
+        .html {
+            position: absolute;
+            top: 31px;
+            width: 160px;
+            height: 140px;
+            left: 0%
+        }
+
+        .css {
+            position: absolute;
+            top: 31px;
+            width: 120px;
+            height: 140px;
+            left: 91%
         }
 
         .titulo {
@@ -59,7 +95,7 @@
             align-items: center;
             margin: 0 auto;
             top: 450px;
-            left: 0.5%;
+            left: 0%;
         }
 
         .titulo3 {
@@ -69,7 +105,7 @@
             align-items: center;
             margin: 0 auto;
             top: 520px;
-            left: 3%;
+            left: 0%;
         }
 
         .titulo4 {
@@ -79,7 +115,7 @@
             align-items: center;
             margin: 0 auto;
             top: 570px;
-            left: 3%;
+            left: 2%;
         }
 
 
@@ -112,21 +148,21 @@
         }
 
         .divcabeçario {
-            background: #f2f5d5;
+            background-color: bisque;
             font-size: 40px;
             padding: 20px;
             height: 150px;
-            width: 201vh;
-            border: solid 2px indigo;
+            width: 200vh;
+            border: solid 3px indigo;
             color: black;
         }
 
         .div2 { 
 
          position: absolute;
-         width: 96.8%;
-         max-width: 300vh;
-         height: 50px;
+         width: 96.4%;
+         max-width: 201vh;
+         height: 20px;
          margin: 0 auto;
          padding: 20px;
          background: lightskyblue
@@ -138,10 +174,39 @@
         border-style: dotted;
         color: red;
         width: 470px;
-        height: 190px;
+        height: 195px;
         top: 590px;
         left: 37%;
 
+        }
+
+        .tabelaamarela {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            height: 160px;
+            width: 550px;
+            border-style: none;
+            background-color: yellow;
+            top: 620px;
+            left: 3%; 
+            border-radius: 20px;
+        }
+
+        .tabelafinal {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            height: 200px;
+            width: 206vh;
+            border-style: none;
+            background-color: bisque;
+            top: 700px;
+            left: 0%; 
         }
 
     </style>
@@ -152,11 +217,9 @@
 
     <div class="divcabeçario">
 
-        <img width="130" height="150"
-         src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/1822px-ISO_C%2B%2B_Logo.svg.png">
+         <img class="cezão" width="180" height="180"src="imagens/c++.png">
          <p class="absolute">C++ e Java</p>
-         <img class="javinha" width="200" height="150"
-         src="https://images.vexels.com/media/users/3/166401/isolated/preview/b82aa7ac3f736dd78570dd3fa3fa9e24-icone-da-linguagem-de-programacao-java.png">
+         <img class="javinha" width="150" height="180" src="imagens/java.png">
 
     </div>
 
@@ -193,18 +256,23 @@
                descende imediatamente. Java tem em comum com a linguagem C++ o fato de ser orientada a objetos e mantém com esta
                uma alto grau de semelhança.</h2>
 
-        <div>
+               <div> <h1 class="titulo2"> Livros </h1> </div>
 
-           <h1 class="titulo2"> Livros </h1>
-           <img class="imagem" src="imagens/book1.jpg">
-           <img class="imagem2" src="imagens/book2.jpg">
-           <img class="imagem3" src="imagens/book3.jpg">
+        <div class="livros">
+
+         <ul>
+
+           <il><img class="imagem1" src="imagens/book1.jpg"></il>
+           <il><img class="imagem2" src="imagens/book2.jpg"></il>
+           <il><img class="imagem3" src="imagens/book3.jpg"></il>
+
+         </ul>
 
         </div>
         
-        <div>
+        <div><h1 class="titulo3"> Aprenda a programar com Java e C++ na FEI </h1></div>
 
-         <h1 class="titulo3"> Aprenda a programar com Java e C++ na FEI </h1>
+        <div>
          
             <iframe class="video" width="320" height="300" src="https://www.youtube.com/embed/4MHAOPxcnsQ?si=5LCT6lIViK_f70eJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             <iframe class="localização" width="320" height="300" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3652.648556785657!2d-46.581586585019195!3d-23.724241184602274!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce4158ef9c7c05%3A0x776b798985695f52!2sCentro%20Universit%C3%A1rio%20FEI%20-%20Campus%20S%C3%A3o%20Bernardo%20do%20Campo!5e0!3m2!1spt-BR!2sbr!4v1630280666216!5m2!1spt-BR!2sbr"></iframe>
@@ -227,6 +295,35 @@
             <p class="email2"> isaacjesus@fei.edu.br</p>
 
          </div>
+
+         <div class="tabelaamarela">
+
+            <p class="textoinbox"> Sites para a consulta: </p>
+            <ul class="listainbox">
+
+              <li> HTML -</li>
+              <li> CSS -</li>
+              <li> JavaScript -</li>
+
+            </ul>
+
+            <table><tr><td><a class="consulta1" href=""> https://www.w3schools.com/html/</a></td></tr></table>
+
+            <table><tr><td><a class="consulta2" href=""> https://www.w3schools.com/css/</a></td></tr></table>
+
+            <table><tr><td><a class="consulta3" href=""> https://www.w3schools.com/js/</a></td></tr></table>
+
+         </div>
+
+         <div class="tabelafinal">
+
+            <img class="html" src="imagens/html.png">
+            <img class="css" src="imagens/css.png">
+
+         </div>
+
+         <div><p class="textinhofinal"> Desejamos um excelente semestre a todos.</p></div>
+
 </body>
 
 </html>

@@ -5,12 +5,22 @@
     justify-content: space-evenly;
     align-items:center;
     color: darkred;
-    font-size: 20px;
+    font-size: 15px;
     list-style: none;
-    padding-left: 300px;
-    padding-right: 270px;
+    padding-left: 450px;
+    padding-right: 450px;
     left: 0%;
-    top: 0%;
+    top: 0px;
+}
+.textinhofinal {
+  position: relative;
+  display: inline;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  top: 600px;
+  left: 38%;
+  font-size: 15pt
 }
 .texto {
   position: absolute;
@@ -119,4 +129,39 @@
     border: solid 1px red;
     width: 170px;
     height: 0px;
+}
+.textoinbox {
+  position: absolute;
+  font-size:larger;
+  color:black;
+  top: 0px;
+  left: 0%
+}
+.listainbox {
+  position: absolute;
+  font-size: 20px;
+  color: black;
+  top: 60px;
+  left: 0%
+}
+.consulta1 {
+  position: absolute;
+  font-size: 15px;
+  color: red;
+  top: 82px;
+  left: 21%;
+}
+.consulta2 {
+  position: absolute;
+  font-size: 15px;
+  color: red;
+  top: 104px;
+  left: 18%;
+}
+.consulta3 {
+  position: absolute;
+  font-size: 15px;
+  color: red;
+  top: 127px;
+  left: 26%;
 }
