@@ -7,8 +7,8 @@
     color: darkred;
     font-size: 20px;
     list-style: none;
-    padding-left: 700px;
-    padding-right: 720px;
+    padding-left: 300px;
+    padding-right: 270px;
     left: 0%;
     top: 0%;
 }
@@ -88,9 +88,35 @@
     align-items: center;
     color: black;
     left: 234px;
-    top: 64px;
+    top: 63.5px;
+    font-size: 16px;
+    border: solid 1px red;
+    width: 170px;
+    height: 0.5px;
+  }
+.nome2 {
+  position: absolute;
+    display: inline;
+    display: flex;
+    align-items: center;
+    color: black;
+    left: 0px;
+    top: 128px;
+    font-size: 16px;
+    border: solid 1px red;
+    width: 169px;
+    height: 0px;
+}
+.email2 {
+  position: absolute;
+    display: inline;
+    display: flex;
+    align-items: center;
+    color: black;
+    left: 234px;
+    top: 128px;
     font-size: 16px;
     border: solid 1px red;
     width: 170px;
     height: 0px;
-  }
+}
