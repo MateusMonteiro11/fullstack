@@ -18,8 +18,10 @@
   margin: 0 auto;
   justify-content: center;
   align-items: center;
+  padding-left: 76vh;
+  padding-right: 0vh;
   top: 600px;
-  left: 35%;
+  left: 0%;
   font-size: 15pt
 }
 .texto {
