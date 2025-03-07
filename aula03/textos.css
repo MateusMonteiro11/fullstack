@@ -16,9 +16,9 @@
   position: relative;
   display: inline;
   margin: 0 auto;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  padding-left: 76vh;
+  padding-left: 78vh;
   padding-right: 0vh;
   top: 600px;
   left: 0%;
