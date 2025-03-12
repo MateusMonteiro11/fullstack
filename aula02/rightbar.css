@@ -1,0 +1,13 @@
+.rightbar {
+    position: absolute;
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 145vh;
+    align-items: flex-start;
+    text-align: start;
+    padding: 20px;
+    width: 30vh;
+    height: 65vh;
+    top: 90px;
+    background-color: red;
+}

@@ -1,0 +1,8 @@
+.cabeçario {
+    display: flex;
+    width: auto;
+    height: 10vh;
+    border: solid 3px white;
+    border-radius: 10px;
+    background-color: black;
+}

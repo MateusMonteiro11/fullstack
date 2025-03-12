@@ -1,0 +1,6 @@
+.siderbar {
+    position: absolute;
+    padding: 20px;
+    justify-content:left;
+    align-items: center;
+}
