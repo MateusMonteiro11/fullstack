@@ -2,12 +2,11 @@
     position: absolute;
     display: flex;
     justify-content: flex-end;
-    margin-left: 145vh;
-    align-items: flex-start;
+    margin-left: 130vh;
+    align-items: start;
     text-align: start;
     padding: 20px;
-    width: 30vh;
+    width: 40vh;
     height: 65vh;
-    top: 90px;
-    background-color: red;
+    top: 50vh;
 }

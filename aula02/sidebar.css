@@ -1,6 +1,9 @@
 .siderbar {
     position: absolute;
+    margin-left: 30vh;
     padding: 20px;
     justify-content:left;
     align-items: center;
+    height: 40vh;
+    top: 50vh;
 }
