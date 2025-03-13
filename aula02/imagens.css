@@ -1,0 +1,9 @@
+.imagem1{
+    width: 400px;
+    height: 300px;
+    border-radius: 10px;
+    margin-left: 80vh;
+    display: flex;
+    display: inline;
+    justify-content: space-evenly;
+}

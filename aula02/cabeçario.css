@@ -1,0 +1,11 @@
+.divcabeçario{
+    background-color: bisque;
+    padding: 20px;
+    height: 05vh;
+    width: auto;
+    border: solid 3px black;
+    color: black;
+    border-radius: 5px;
+    text-align: center;
+
+}
