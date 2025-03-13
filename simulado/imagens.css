@@ -1,0 +1,52 @@
+.imagem1 {
+    width: 100px;
+    height: 80px;
+}
+.imagem2 {
+    width: 100px;
+    height: 80px;
+}
+.imagem3 {
+    width: 100px;
+    height: 80px;
+}
+.friendsimage {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+.peopleimage {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 300px;
+    height: 190px;
+    top: 40px;
+    padding-right: 24vh;
+}
+.tabelaimage {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 250px;
+    height: 150px;
+    top: 305px;
+    padding-left: 108vh;
+}
+.fraseimage {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 140px;
+    height: 80px;
+    top: 465px;
+    padding-left: 115vh;
+}
