@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Média Alunos</title>
+    <link href="style.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="container">
+        <h1> Insira as notas para cada elemento a seguir: </h1>
+        <label>
+            <p> Trabalho Laboratório: </p>
+            <input type="number" id="nota1">
+            <p> Avaliação Semestral: </p>
+            <input type="number" id="nota2">
+            <p> Exame Final: </p>
+            <input type="number" id="nota3">
+        </label>
+        <input type="button" value="Enviar" onclick="media();">
+        <p id="paragrafo"> = </p>
+        <p id="Conceito"> Conceito </p>
+    </div>
+    
+    <script src="javinha.js"></script>
+</body>
+
+</html>

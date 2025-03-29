@@ -1,0 +1,9 @@
+.container {
+    display: flex;
+    width: auto;
+    height: 45vh;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
