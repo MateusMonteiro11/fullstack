@@ -11,20 +11,20 @@ function piso () {
 function parteazul01 () {
     ctx.beginPath();
     ctx.lineWidth = 1;
-    ctx.fillStyle = 'blue';
+    ctx.fillStyle = '#458EFC';
     ctx.fillRect(0,440,150,400);
     ctx.closePath();
 }
 function parteazul02 () {
     ctx.beginPath();
     ctx.lineWidth = 1;
-    ctx.fillStyle = 'blue';
+    ctx.fillStyle = '#458EFC';
     ctx.fillRect(0,650,430,800);
     ctx.closePath();
 }
 function circuloazul () {
     ctx.beginPath();
-    ctx.fillStyle = 'blue';
+    ctx.fillStyle = '#458EFC';
     ctx.lineWidth = 2; 
     ctx.arc(420, 750, 100, 0, 2 * Math.PI);
     ctx.fill();
@@ -32,7 +32,7 @@ function circuloazul () {
 }
 function circuloazul02 () {
     ctx.beginPath();
-    ctx.fillStyle = 'blue';
+    ctx.fillStyle = '#458EFC';
     ctx.lineWidth = 2; 
     ctx.arc(52, 420, 100, 0, 2 * Math.PI);
     ctx.fill();
@@ -41,7 +41,7 @@ function circuloazul02 () {
 function arvore01 () {
     ctx.beginPath();
     ctx.lineWidth = 1;
-    ctx.fillStyle = 'brown';
+    ctx.fillStyle = '#86471A';
     ctx.fillRect(150,250,60,200);
     ctx.closePath();
 }
@@ -56,7 +56,7 @@ function folha01 () {
 function arvore02 () {
     ctx.beginPath();
     ctx.lineWidth = 1;
-    ctx.fillStyle = 'brown';
+    ctx.fillStyle = '#86471A';
     ctx.fillRect(680,430,60,200);
     ctx.closePath();
 }
@@ -71,28 +71,28 @@ function folha02 () {
 function casinha () {
     ctx.beginPath();
     ctx.lineWidth = 1;
-    ctx.fillStyle = 'brown';
+    ctx.fillStyle = '#86471A';
     ctx.fillRect(320,200,230,250);
     ctx.closePath();
 }
 function janela01 () {
     ctx.beginPath();
     ctx.lineWidth = 1;
-    ctx.fillStyle = 'aqua';
+    ctx.fillStyle = '#47BDFD';
     ctx.fillRect(340,270,80,80);
     ctx.closePath();
 }
 function janela02 () {
     ctx.beginPath();
     ctx.lineWidth = 1;
-    ctx.fillStyle = 'aqua';
+    ctx.fillStyle = '#47BDFD';
     ctx.fillRect(450,270,80,80);
     ctx.closePath();
 }
 function telhado() {
     ctx.beginPath();
     ctx.lineWidth = 1;
-    ctx.fillStyle = 'red'; 
+    ctx.fillStyle = '#F5694D'; 
     ctx.moveTo(320, 200); 
     ctx.lineTo(435, 100); 
     ctx.lineTo(550, 200); 
@@ -102,7 +102,7 @@ function telhado() {
 function porta() {
     ctx.beginPath();
     ctx.lineWidth = 1;
-    ctx.fillStyle = 'black';
+    ctx.fillStyle = '#624423';
     ctx.fillRect(410,350,50,100);
     ctx.closePath();
 }
