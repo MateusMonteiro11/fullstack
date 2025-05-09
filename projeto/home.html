@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo dos Copos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        #game-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        #cups-container {
+            display: flex;
+            justify-content: center;
+            margin: 50px 0;
+            position: relative;
+            height: 300px;
+            align-items: flex-end;
+        }
+        
+        .cup-img {
+            width: 120px;
+            height: 180px;
+            cursor: pointer;
+            transition: all 0.5s;
+            position: absolute;
+            z-index: 2;
+            transform: translateY(0);
+        }
+        
+        #ball {
+            width: 30px;
+            height: 30px;
+            background-color: #f1c40f;
+            border-radius: 50%;
+            position: absolute;
+            z-index: 1;
+            transition: all 0.5s;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        #controls {
+            margin: 20px 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #27ae60;
+        }
+
+        #game-over {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            z-index: 10;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+        }
+
+        .cup-img.moving {
+            transition: all 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <h1>Jogo dos Copos</h1>
+        <div id="score">Pontuação: 0</div>
+        
+        <div id="cups-container">
+            <div id="ball"></div>
+            <img src="imagens/copo.png" class="cup-img" data-cup="1" style="left: 20%">
+            <img src="imagens/copo.png" class="cup-img" data-cup="2" style="left: 40%">
+            <img src="imagens/copo.png" class="cup-img" data-cup="3" style="left: 60%">
+        </div>
+        
+        <div id="controls">
+            <button id="start-btn">Iniciar Jogo</button>
+        </div>
+    </div>
+    
+    <div id="game-over">
+        <h2>Game Over!</h2>
+        <p>Sua pontuação final: <span id="final-score">0</span></p>
+        <button id="restart-btn">Tentar Novamente</button>
+    </div>
+    
+    <script>
+        const cups = document.querySelectorAll('.cup-img');
+        const ball = document.getElementById('ball');
+        const startBtn = document.getElementById('start-btn');
+        const gameOverScreen = document.getElementById('game-over');
+        const restartBtn = document.getElementById('restart-btn');
+        const scoreDisplay = document.getElementById('score');
+        const finalScoreDisplay = document.getElementById('final-score');
+        
+        let score = 0;
+        let ballPosition = 2;
+        let isAnimating = false;
+        let isGameActive = false;
+        let shuffleInterval;
+
+        // Posições iniciais
+        const positions = ['20%', '40%', '60%'];
+
+        function initGame() {
+            score = 0;
+            scoreDisplay.textContent = `Pontuação: ${score}`;
+            isGameActive = true;
+            gameOverScreen.style.display = 'none';
+            resetGame();
+        }
+
+        function resetGame() {
+            // Reset positions
+            cups.forEach((cup, index) => {
+                cup.style.left = positions[index];
+                cup.style.transform = 'translateY(0)';
+                cup.style.pointerEvents = 'none';
+                cup.classList.remove('moving');
+            });
+            
+            // Mostra a bolinha
+            ball.style.opacity = '1';
+            ball.style.left = `${positions[1]}`;
+            startBtn.disabled = false;
+            clearInterval(shuffleInterval);
+        }
+
+        async function startGame() {
+            if (isAnimating) return;
+            isAnimating = true;
+            startBtn.disabled = true;
+
+            // Animação de cobrir a bolinha
+            await coverBall();
+            
+            // Animação de embaralhar
+            await shuffleCups(8);
+            
+            isAnimating = false;
+            enableCups();
+        }
+
+        function coverBall() {
+            return new Promise(resolve => {
+                cups.forEach(cup => {
+                    cup.style.transform = 'translateY(100px)';
+                });
+                ball.style.opacity = '0';
+                setTimeout(resolve, 500);
+            });
+        }
+
+        function shuffleCups(times) {
+            return new Promise(resolve => {
+                let count = 0;
+                cups.forEach(cup => cup.classList.add('moving'));
+                
+                shuffleInterval = setInterval(() => {
+                    const randomOrder = shuffleArray([0, 1, 2]);
+                    
+                    cups.forEach((cup, index) => {
+                        cup.style.left = positions[randomOrder[index]];
+                    });
+
+                    if(++count >= times) {
+                        clearInterval(shuffleInterval);
+                        cups.forEach(cup => cup.classList.remove('moving'));
+                        resolve();
+                    }
+                }, 800);
+            });
+        }
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function enableCups() {
+            cups.forEach(cup => {
+                cup.style.pointerEvents = 'auto';
+            });
+        }
+
+        function checkChoice(selectedCup) {
+            if (!isGameActive || isAnimating) return;
+
+            const selectedPosition = parseInt(selectedCup.getAttribute('data-cup'));
+            const correctCup = Array.from(cups).findIndex(cup => 
+                cup.style.left === positions[ballPosition - 1]
+            ) + 1;
+
+            if (selectedPosition === correctCup) {
+                score++;
+                scoreDisplay.textContent = `Pontuação: ${score}`;
+                setTimeout(() => {
+                    resetGame();
+                    ballPosition = Math.floor(Math.random() * 3) + 1;
+                }, 1000);
+            } else {
+                gameOver();
+            }
+        }
+
+        function gameOver() {
+            isGameActive = false;
+            finalScoreDisplay.textContent = score;
+            gameOverScreen.style.display = 'flex';
+        }
+
+        // Event Listeners
+        startBtn.addEventListener('click', startGame);
+        restartBtn.addEventListener('click', initGame);
+        cups.forEach(cup => {
+            cup.addEventListener('click', () => checkChoice(cup));
+        });
+
+        // Inicialização
+        initGame();
+    </script>
+</body>
+</html>

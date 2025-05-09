@@ -11,7 +11,7 @@ app.set ('view engine', 'ejs')
 app.set ('views', './views') ;
 
 var server = http.createServer (app);
-server.listen (80);
+server.listen (3000);
 
 console.log('Servidor rodando'.rainbow)
 
@@ -21,22 +21,15 @@ resposta.redirect ('home.html')
 })
 
 app.get ('/inicio', function (requisicao, resposta) {
-var nome = requisicao.query.info;
-console.log(nome) ;
-
-})
-
-app.post('/inicio', function (requisicao, resposta) {
-    var data = requisicao.body.data;
-    console.log (data);
+    var usuario = requisicao.query.info;
+    var senha = requisicao.query.info;
+    console.log(nome);
 
 })
 
 app.get('/cadastro', function (requisicao, resposta) {
-    var nome = requisicao.query.nome;
-    var sobrenome = requisicao.query.sobrenome;
-    var nascimento = requisicao.query.nascimento;
-    var civil = requisicao.query.civil;
+    var usuario = requisicao.query.usuario;
+    var senha = requisicao.query.senha;
 
-    resposta.render('resposta_cadastro', { nome, sobrenome, nascimento, civil });
+    resposta.render('resposta_cadastro', { usuario, senha });
 });
