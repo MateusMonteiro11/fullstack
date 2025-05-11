@@ -16,21 +16,21 @@
 
         <nav>
             <a href="#" class="active"> Home </a>
-            <a href="#"> Projetos </a>
-            <a href="#"> Contatos </a>
+            <a href="#projetos"> Projetos </a>
+            <a href="#contato"> Contatos </a>
             <a href="#"> Serviços </a>
         </nav>
     </header>
     <section class="home">
         <div class="home-img">
-            <img src="" alt="imagem_foto">
+            <img src="imagens/imagem.jpeg" alt="imagem_foto">
         </div>
         <div class="home-content">
             <h1> Olá, eu sou <span> Mateus Monteiro</span></h1>
             <h3 class="typing-text"> Eu sou um <span></span></h3>
             <p>Meu nome é Mateus Monteiro, atualmente estudante
-                universitário da FEI, seja bem vindo ao meu site de
-                desenvolvimento web.
+                universitário da FEI e fluente em 3 idiomas, seja
+                bem vindo ao meu site de desenvolvimento web.
             </p>
             <div class="social-icons">
                 <a href="#"><i class="fa-brands fa-linkedin"></i></a>
@@ -41,6 +41,43 @@
             <a href="#" class="btn">Formulário</a>
         </div>
     </section>
+    <section class="projetos" id="projetos">
+    <h2 class="titulo">Meus <span>Projetos</span></h2>
+
+    <div class="container-projetos">
+        <div class="card-projeto">
+            <img src="" alt="Projeto 1">
+            <h3> PROJETO 1 </h3>
+            <p> Descrição Projeto 1</p>
+            <a href="#" class="btn">Visualizar</a>
+        </div>
+
+        <div class="card-projeto">
+            <img src="" alt="Projeto 2">
+            <h3> PROJETO 2</h3>
+            <p>Descrição do projeto 2</p>
+            <a href="#" class="btn">Visualizar</a>
+        </div>
+
+        <div class="card-projeto">
+            <img src="" alt="Projeto 3">
+            <h3> PROJETO 3</h3>
+            <p>Descrição do projeto 3</p>
+            <a href="#" class="btn">Visualizar</a>
+        </div>
+    </div>
+</section>
+<section class="contato" id="contato">
+    <h2 class="titulo">Entre em <span>Contato</span></h2>
+
+    <form action="https://formspree.io/f/xbloarwp" method="POST" class="form-contato">
+        <input type="text" name="nome" placeholder="Seu nome" required>
+        <input type="email" name="email" placeholder="Seu e-mail" required>
+        <textarea name="mensagem" rows="6" placeholder="Sua mensagem" required></textarea>
+        <button type="submit" class="btn">Enviar</button>
+    </form>
+</section>
+
 </body>
 
 </html>
