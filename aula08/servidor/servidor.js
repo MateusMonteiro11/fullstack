@@ -1,35 +1,49 @@
-var http = require('http') ;
-var express = require ('express') ;
-var colors = require('colors') ;
-var bodyParser = require ('body-parser') ;
+const http = require('http');
+const express = require('express');
+const colors = require('colors');
+const bodyParser = require('body-parser');
 
-var app = express () ;
-app.use (express.static('./public') );
-app.use (bodyParser. urlencoded({ extended: false} ) )
-app.use (bodyParser. json () )
-app.set ('view engine', 'ejs')
-app.set ('views', './views') ;
+const app = express();
+const server = http.createServer(app);
 
-var server = http.createServer (app);
-server.listen (3000);
+app.use(express.static('./public'));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.set('view engine', 'ejs');
+app.set('views', './views');
 
-console.log('Servidor rodando'.rainbow)
+let usuarios = [];
 
-app.get ('/', function (requisicao, resposta) {
-resposta.redirect ('home.html')
+server.listen(80, () => {
+    console.log('Servidor rodando na porta 80'.rainbow);
+});
 
-})
+app.get('/', (req, res) => {
+    res.redirect('/home.html');
+});
 
-app.get ('/inicio', function (requisicao, resposta) {
-    var usuario = requisicao.query.info;
-    var senha = requisicao.query.info;
-    console.log(nome);
+app.post('/cadastro', (req, res) => {
+    const { usuario, senha } = req.body;
 
-})
+    const existente = usuarios.find(u => u.usuario === usuario);
+    if (existente) {
+        return res.send('Usuário já cadastrado. <a href="/cadastro.html">Voltar</a>');
+    }
 
-app.get('/cadastro', function (requisicao, resposta) {
-    var usuario = requisicao.query.usuario;
-    var senha = requisicao.query.senha;
+    usuarios.push({ usuario, senha });
+    console.log('Usuários cadastrados:', usuarios);
 
-    resposta.render('resposta_cadastro', { usuario, senha });
+    res.redirect('/home.html');
+});
+
+app.post('/inicio', (req, res) => {
+    const { usuario, senha } = req.body;
+
+    const encontrado = usuarios.find(u => u.usuario === usuario && u.senha === senha);
+
+    if (encontrado) {
+        res.render('resposta_cadastro', { usuario, senha });
+    } else {
+        res.send('Usuário ou senha inválidos. <a href="/home.html">Tentar novamente</a>');
+    }
 });
