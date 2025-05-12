@@ -1,0 +1,59 @@
+.containercabeçario {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    gap: 5px;
+}
+.containertextos {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+    gap: 8px;
+    top: 5px;
+}
+.linha {
+    position: relative;
+    display: flex;
+    background-color: gray;
+    width: 210.4vh;
+    height: 2px;
+    top: 10px;
+}
+.textos2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+    gap: 2px;
+}
+.textopeople {
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+    top: 8vh;
+    padding-right: 32vh;
+}
+.textosemifinal {
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+    gap: 3px;
+    top: 22vh;
+}
+.textofinal {
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+    top: 23vh;
+}
