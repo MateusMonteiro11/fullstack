@@ -1,25 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<title> Resposta </title>
-<link href="style.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Cadastro Post</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: gray;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .mensagem {
+            background-color: #fff;
+            display: inline-block;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #333;
+        }
+
+        a {
+            display: block;
+            margin-top: 20px;
+            color: purple;
+            text-decoration: none;
+        }
+    </style>
 </head>
-
 <body>
-
-<div class="containerpai">
- 
-    <div class="container">
-        <h1> Resposta para o usuário: </h1>
-
-        <h1>Titulo: <%= titulo %> </h1>
-        <p>Resumo: <%= resumo %> </p>
-        <p>Conteúdo: <%= conteudo %> </p>
-</div>
-</div>
-
+    <div class="mensagem">
+        <h2><%= resposta %></h2>
+        <a href="/">Voltar para Home</a>
+        <a href="/posts">Ver Todos os Posts</a>
+    </div>
 </body>
-
 </html>

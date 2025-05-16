@@ -25,6 +25,8 @@ form {
     text-align: center;
 }
 label {
+    display: flex;
+    flex-direction: column;
     color: rgba(255, 255, 255, 0.8);
     text-transform:uppercase;
     font-size: 20px;
@@ -48,4 +50,7 @@ input {
 }
 input:hover {
     background: rgba(241, 237, 237, 0.767);
+}
+input[type="submit"] {
+    width: 10vh;
 }

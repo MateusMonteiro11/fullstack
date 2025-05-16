@@ -3,71 +3,63 @@ const express = require('express');
 const colors = require('colors');
 const bodyParser = require('body-parser');
 const mongodb = require('mongodb');
+const path = require('path');
 
+// Conexão com MongoDB.
 const MongoClient = mongodb.MongoClient;
 const uri = 'mongodb+srv://mateusmonteiro:Mateus3322@cluster0.s9w3yo5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const app = express();
-app.use(express.static('./public'));
+
+// Configurações do Express.
+app.use(express.static('./public')); // Arquivo estáticos.
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
-// Conectar ao MongoDB antes de rodar o servidor
+// Conectar ao MongoDB antes de iniciar o servidor.
 client.connect().then(() => {
     const dbo = client.db("create_and_read");
     const biblioteca = dbo.collection("usuarios");
 
-    // Rota GET para chamar os argumentos
-    app.get ("/inicio", function(req, resp) {
-        let titulo = req.body.titulo;
-        let resumo = req.body.resumo;
-        let conteudo = req.body.conteudo;
-
-        console.log(titulo, resumo, conteudo)
-
-        resp.render('resposta', { titulo, resumo, conteudo });
-    })
-
-    // Rota POST para criar um post
-    // app.post("/inicio", function(req, resp) {
-    //     let titulo = req.body.titulo;
-    //     let resumo = req.body.resumo;
-    //     let conteudo = req.body.conteudo;
-
-    //     console.log(titulo, resumo, conteudo)
-    //     var data = {
-    //         db_titulo: req.body.titulo,
-    //         db_resumo: req.body.resumo,
-    //         db_conteudo: req.body.conteudo
-    //     };
-
-    //     biblioteca.insertOne(data, function(err) {
-    //         if (err) {
-    //             resp.render('resposta', { resposta: "Erro ao criar o post!" });
-    //         } else {
-    //             resp.render('resposta', { resposta: "Post criado com sucesso!" });
-    //         }
-    //     });
-    // });
-
-    // Rota GET raiz redireciona para home.html
-    app.get('/', function(req, resp) {
-        resp.redirect('home.html');
+    // Rota principal (abre home.html).
+    app.get('/', (req, res) => {
+        res.sendFile(path.join(__dirname, 'public', 'home.html'));
     });
 
-    // Rota GET para exibir dados passados
-    // app.get('/inicio', function(req, resp) {
-    //     const { titulo, resumo, conteudo } = req.query;
-    //     resp.render('resposta', { titulo, resumo, conteudo });
-    // });
+    // Rota POST: Criação de novo post.
+    app.post("/inicio", (req, res) => {
+        const data = {
+            db_titulo: req.body.titulo,
+            db_resumo: req.body.resumo,
+            db_conteudo: req.body.conteudo
+        };
 
-    // Iniciar servidor
+        biblioteca.insertOne(data, (err) => {
+            if (err) {
+                res.render('resposta', { resposta: "Erro ao criar o post!" });
+            } else {
+                res.render('resposta', { resposta: "Post criado com sucesso!" });
+            }
+        });
+    });
+
+    // Rota GET: Visualização dos posts salvos (READ).
+    app.get('/posts', async (req, res) => {
+        try {
+            const posts = await biblioteca.find().toArray();
+            res.render('posts', { posts });
+        } catch (err) {
+            res.send("Erro ao buscar posts");
+        }
+    });
+
+    // Iniciar servidor.
     const server = http.createServer(app);
-    server.listen(300, () => {
-        console.log('Servidor rodando na porta 300'.rainbow);
+    server.listen(3000, () => {
+        console.log('Servidor rodando na porta 3000'.rainbow);
     });
 
 }).catch(err => {
