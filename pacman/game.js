@@ -6,6 +6,7 @@ const wallOffset = (blockSize - wallWidth) / 2; // Offset das paredes
 const FPS = 30; // Frames por segundo
 
 let score = 0; // Pontuação inicial
+let gameCompleted = false;
 let lives = 3; // Vidas iniciais
 let map = [ // Mapa do jogo
     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
@@ -36,6 +37,17 @@ let map = [ // Mapa do jogo
 let ctx; // Contexto do canvas
 let pacmanSprites; // Imagem dos sprites do Pacman
 let ghostSprites; // Imagem dos sprites dos fantasmas
+const originalMap = JSON.parse(JSON.stringify(map)); // Cópia original do mapa para reiniciar elementos
+
+let randomTargetsForGhosts = [
+    { x: 1 * blockSize, y: 1 * blockSize },
+    { x: 1 * blockSize, y: (map.length - 2) * blockSize },
+    { x: (map[0].length - 2) * blockSize, y: blockSize },
+    {
+        x: (map[0].length - 2) * blockSize,
+        y: (map.length - 2) * blockSize,
+    },
+];
 
 // Funções do jogo
 function initializeCanvas() {
@@ -83,12 +95,48 @@ function updateGame() {
     }
 }
 
+function restartGame() {
+    clearInterval(gameInterval); // para o jogo atual
+    score = 0;
+    lives = 3;
+    gameCompleted = false;
+
+    // Recarrega o mapa original com todas as comidas
+    for (let i = 0; i < map.length; i++) {
+        for (let j = 0; j < map[i].length; j++) {
+            if (originalMap[i][j] === 2) {
+                map[i][j] = 2;
+            }
+        }
+    }
+
+    updateScoreDisplay();
+    updateLivesDisplay();
+    startGame(); // reinicia o jogo
+}
+
+
+function updateScore(points) {
+    if (gameCompleted) return;
+
+    score += points;
+    document.getElementById("score").textContent = "Score: " + score;
+
+    if (score >= 221) {
+        gameCompleted = true;
+        setTimeout(() => {
+            alert("Parabéns! Você completou o jogo!");
+            restartGame(); // reinicia completamente
+        }, 100);
+    }
+}
+
 function handleGhostCollision() {
     lives--;
     updateLivesDisplay();
     if (lives <= 0) {
         alert('Game Over! Final Score: ' + score);
-        resetPositions();
+        restartGame();
         score = 0;
         lives = 3;
         updateScoreDisplay();
@@ -169,8 +217,23 @@ function renderGame() {
 
 let gameInterval;
 function startGame() {
-    initializeCanvas(); // Inicializa o canvas e sprites
+    initializeCanvas();
+
+    // Aguarda carregamento dos sprites
+    if (!pacmanSprites.complete || !ghostSprites.complete) {
+        setTimeout(startGame, 100);
+        return;
+    }
+
+    // PARA intervalo anterior se existir
+    if (gameInterval) {
+        clearInterval(gameInterval);
+    }
+
     resetPositions();
+    updateScoreDisplay();
+    updateLivesDisplay();
+
     gameInterval = setInterval(() => {
         updateGame();
         renderGame();

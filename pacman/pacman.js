@@ -19,14 +19,14 @@ class Pacman {
         if (this.checkCollisions()) this.moveBackward();
     }
     consume() {
-        const mapX = this.getMapX();
-        const mapY = this.getMapY();
-        if (map[mapY][mapX] === 2) {
-            map[mapY][mapX] = 3;
-            score++;
-            updateScoreDisplay();
-        }
+    const row = Math.floor(this.y / blockSize);
+    const col = Math.floor(this.x / blockSize);
+
+    if (map[row][col] === 2) {
+        map[row][col] = 0;
+        updateScore(1); // <- aqui está a chave
     }
+}
     moveBackward() {
         switch(this.direction) {
             case RIGHT: this.x -= this.speed; break;
@@ -66,12 +66,22 @@ class Pacman {
             this.moveBackward();
         }
     }
+    
     getMapX() {
         return Math.floor((this.x + this.width/2) / blockSize);
     }
     getMapY() {
         return Math.floor((this.y + this.height/2) / blockSize);
     }
+    getMapXRightSide() {
+        let mapX = parseInt((this.x * 0.99 + blockSize) / blockSize);
+        return mapX;
+    }
+    getMapYRightSide() {
+        let mapY = parseInt((this.y * 0.99 + blockSize) / blockSize);
+        return mapY;
+    }
+
     updateAnimation() {
         this.currentFrame = this.currentFrame === this.frameCount ? 1 : this.currentFrame + 1;
     }
