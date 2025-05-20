@@ -13,6 +13,7 @@ class Pacman {
         this.frameCount = 7;
         this.animationInterval = setInterval(() => this.updateAnimation(), 100);
     }
+    
     move() {
         this.updateDirectionIfPossible();
         this.moveForward();
@@ -66,7 +67,7 @@ class Pacman {
             this.moveBackward();
         }
     }
-    
+
     getMapX() {
         return Math.floor((this.x + this.width/2) / blockSize);
     }

@@ -6,7 +6,8 @@ class Ghost {
         imageY,
         imageWidth,
         imageHeight,
-        range) {
+        range
+    ) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -23,6 +24,9 @@ class Ghost {
         this.changeDirectionInterval = setInterval(() => {
             this.updateDirection();
         }, 1000);
+        setInterval(() => {
+            this.changeRandomDirection();
+        }, 10000)
     }
 
     isInRange() {
@@ -89,6 +93,12 @@ class Ghost {
             this.moveBackward();
             return;
         }
+    }
+
+    changeRandomDirection() {
+        let addition = 1;
+        this.randomTargetIndex += addition;
+        this.randomTargetIndex = this.randomTargetIndex % 4;
     }
 
     moveBackward() {
@@ -244,6 +254,11 @@ class Ghost {
         return mapY;
     }
 
+    changeAnimation() {
+        this.currentFrame =
+            this.currentFrame == this.frameCount ? 1 : this.currentFrame + 1;
+    }
+
     draw() {
         ctx.save();
         ctx.drawImage(
@@ -260,3 +275,15 @@ class Ghost {
         ctx.restore();
     }
 }
+
+    let updateGhosts = () => {
+    for (let i = 0; i < ghosts.length; i++) {
+        ghosts[i].move();
+    }
+};
+
+    let drawGhosts = () => {
+    for (let i = 0; i < ghosts.length; i++) {
+        ghosts[i].draw();
+    }
+};
