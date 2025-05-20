@@ -48,7 +48,7 @@ const creatorText = `
     <img 
       src="caminho-para-sua-imagem.jpg" 
       alt="Foto de Mateus Monteiro" 
-      style="width: 100px; height: 100px; border-radius: 10px; object-fit: cover; border: 2px solid #0f0; margin-bottom: 15px;"
+      style="width: 100px; height: 100px; border-radius: 10px; object-fit: cover; border: 2px solid yellow; margin-bottom: 15px;"
     >
     <h2 style="font-size: 14px; margin-bottom: 10px;">Mateus Monteiro</h2>
     <p style="font-size: 8px; line-height: 1.6;">
