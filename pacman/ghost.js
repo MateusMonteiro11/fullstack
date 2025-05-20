@@ -41,6 +41,7 @@ class Ghost {
         return false;
     }
 
+
     updateDirection() {
     const directions = [UP, DOWN, LEFT, RIGHT];
     let bestDirection = this.direction;

@@ -49,6 +49,11 @@ let randomTargetsForGhosts = [
     },
 ];
 
+const btnHome = document.getElementById('btnHome');
+btnHome.addEventListener('click', () => {
+  window.location.href = 'home.html';
+});
+
 // Funções do jogo
 function initializeCanvas() {
     const canvas = document.getElementById('canvas');
