@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Pac-Man Jogo</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
 
@@ -19,25 +21,29 @@
 
     <div id="Passou" style="display:none">
         <div class="PassouContent">
-            <h1>Você Passou !</h1>
-            <p>Parabéns você conseguiu completar o jogo !</p>
+            <h1>Parabéns !</h1>
+            <p>Você conseguiu completar o jogo !</p>
             <button onclick="restartGame()">Reiniciar</button>
         </div>
     </div>
 
     <h1>Pac-Man</h1>
     <div id="scoreboard">
-        <div id="score">Score: 0</div>
-        <div id="lives">Lives: 3</div>
+        <div id="score">Pontos: 0</div>
+        <div id="lives">Vidas: 3</div>
     </div>
+
     <canvas id="canvas" width="420" height="440"></canvas>
+
     <div style="display:none;">
         <img id="pacmanSprites" src="imagens/animations.gif" alt="" width="140" height="20" />
         <img id="ghostSprites" src="imagens/ghost.png" alt="" width="140" height="20" />
     </div>
+
     <div class="buttonhome">
         <button id="btnHome" aria-controls="content" aria-expanded="false" aria-label="Iniciar o jogo">Voltar</button>
     </div>
+
     <script src="pacman.js"></script>
     <script src="ghost.js"></script>
     <script src="game.js"></script>

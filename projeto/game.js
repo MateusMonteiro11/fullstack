@@ -9,7 +9,7 @@ let score = 0; // Pontuação inicial
 let gameCompleted = false; // Atribuição para verificar se o jogo foi zerado.
 let isGameOver = false; // Atribuição para verificar se as vidas foram zeradas
 let lives = 3; // Vidas iniciais
-let map = [ // Mapa do jogo
+let map = [ // Mapa do jogo definido através de sistemas de identificação binária (ideal para o jogo do pacman)
     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
     [1,2,2,2,2,2,2,2,2,2,1,2,2,2,2,2,2,2,2,2,1],
     [1,2,1,1,1,2,1,1,1,2,1,2,1,1,1,2,1,1,1,2,1],
@@ -35,11 +35,17 @@ let map = [ // Mapa do jogo
     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 ];
 
+// 0: Nada
+// 1: Parede
+// 2: Comida
+
 let ctx; // Contexto do canvas
 let pacmanSprites; // Imagem dos sprites do Pacman
 let ghostSprites; // Imagem dos sprites dos fantasmas
 const originalMap = JSON.parse(JSON.stringify(map)); // Cópia original do mapa para reiniciar elementos
 
+
+// Atribuição de presas aleatórias para os fantasmas
 let randomTargetsForGhosts = [
     { x: 1 * blockSize, y: 1 * blockSize },
     { x: 1 * blockSize, y: (map.length - 2) * blockSize },
@@ -50,6 +56,7 @@ let randomTargetsForGhosts = [
     },
 ];
 
+// Botão voltar
 const btnHome = document.getElementById('btnHome');
 btnHome.addEventListener('click', () => {
   window.location.href = 'home.html';
@@ -63,14 +70,18 @@ function initializeCanvas() {
     ghostSprites = document.getElementById('ghostSprites');
 }
 
+// Chamando fantamas e o pacman
 let pacman;
 let ghosts = [];
 const ghostCount = 4;
 
+
+// Iniciando o canvas
 function initializePacman() {
     pacman = new Pacman(blockSize * 10, blockSize * 13, blockSize, blockSize, blockSize / 4);
 }
 
+// Função para criar os fantasmas no meio do mapa
 function createGhosts() {
     ghosts.length = 0;
     const startPositions = [
@@ -92,6 +103,7 @@ function createGhosts() {
     }
 }
 
+// Lógica do jogo
 function updateGame() {
     pacman.move();
     pacman.consume();
@@ -101,6 +113,7 @@ function updateGame() {
     }
 }
 
+// Reiniciar o jogo
 function restartGame() {
     clearInterval(gameInterval);
     score = 0;
@@ -125,6 +138,7 @@ function restartGame() {
 }
 
 
+// Caso o usuário conclua a fase
 function updateScore(points) {
     score += points; // Atualiza o score
     updateScoreDisplay();
@@ -137,19 +151,20 @@ function updateScore(points) {
     }
 }
 
-
+// Caso o usuário perca a fase
 function handleGhostCollision() {
     lives--;
     updateLivesDisplay();
     if (lives <= 0) {
         isGameOver = true;
         clearInterval(gameInterval); // para o jogo
-        document.getElementById('GameOver').style.display = "flex";
+        document.getElementById('GameOver').style.display = "flex"; // Exibe a tela de derrota
         return;
     }
     resetPositions();
 }
 
+// Resetar a posição do pacman e dos fantasmas
 function resetPositions() {
     initializePacman();
     createGhosts();
@@ -162,6 +177,7 @@ function drawRectangle(x, y, width, height, color) {
 }
 
 
+// Toda complexidade das paredes
 function renderWalls() {
     for (let i = 0; i < map.length; i++) {
         for (let j = 0; j < map[i].length; j++) {
@@ -184,6 +200,7 @@ function renderWalls() {
     }
 }
 
+// Criação das comidas do mapa
 function renderFood() {
     for (let i=0; i<map.length; i++) {
         for (let j=0; j<map[i].length; j++) {
@@ -194,22 +211,27 @@ function renderFood() {
     }
 }
 
+// Score do usuário
 function renderScore() {
-    document.getElementById('score').innerText = 'Score: ' + score;
+    document.getElementById('score').innerText = 'Pontos: ' + score;
 }
 
+// Vida do usuário
 function renderLives() {
-    document.getElementById('lives').innerText = 'Lives: ' + lives;
+    document.getElementById('lives').innerText = 'Vidas: ' + lives;
 }
 
+// Renderizar os fantasmas
 function renderGhosts() {
     ghosts.forEach(g => g.draw());
 }
 
+// Fechar o canvas, (utilizado para casos especificos)
 function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
+// Renderizar todo o jogo e sua lógica
 function renderGame() {
     clearCanvas();
     drawRectangle(0, 0, canvas.width, canvas.height, "black");
@@ -219,6 +241,7 @@ function renderGame() {
     pacman.draw();
 }
 
+// Intervalo entre telas
 let gameInterval;
 function startGame() {
     initializeCanvas();
@@ -244,6 +267,7 @@ function startGame() {
     }, 1000 / FPS);
 }
 
+// Lógica da movimentação do pacman
 window.addEventListener('keydown', (event) => {
     switch(event.key) {
         case 'ArrowLeft':
@@ -269,12 +293,14 @@ window.addEventListener('keydown', (event) => {
     }
 });
 
+// Atualizar o score/pontos do usuário
 function updateScoreDisplay() {
-    document.getElementById('score').innerText = 'Score: ' + score;
+    document.getElementById('score').innerText = 'Pontos: ' + score;
 }
 
+// Atualizar a vida do usuário
 function updateLivesDisplay() {
-    document.getElementById('lives').innerText = 'Lives: ' + lives;
+    document.getElementById('lives').innerText = 'Vidas: ' + lives;
 }
 
 startGame();

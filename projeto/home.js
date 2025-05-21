@@ -46,25 +46,26 @@ const creatorText = `
     margin: auto;
   ">
     <img 
-      src="caminho-para-sua-imagem.jpg" 
+      src="imagens/eu.jpeg" 
       alt="Foto de Mateus Monteiro" 
       style="width: 100px; height: 100px; border-radius: 10px; object-fit: cover; border: 2px solid yellow; margin-bottom: 15px;"
     >
     <h2 style="font-size: 14px; margin-bottom: 10px;">Mateus Monteiro</h2>
     <p style="font-size: 8px; line-height: 1.6;">
-      Estudante da FEI<br>
-      Desenvolvedor de jogos e entusiasta de tecnologia<br>
-      Apaixonado por criar experiências digitais
+      Estudante universitário da FEI<br>
+      Desenvolvedor e entusiasta de tecnologia,
+      apaixonado por criar experiências digitais e
+      programas funcionais intuitivos.
     </p>
     <p style="margin-top: 20px; font-size: 8px;">Minhas redes</p>
     <div style="display: flex; justify-content: center; gap: 15px; margin-top: 10px;">
-      <a href="https://github.com/seuusuario" target="_blank">
+      <a href="" target="_blank">
         <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" style="width: 24px;">
       </a>
-      <a href="https://linkedin.com/in/seuusuario" target="_blank">
+      <a href="" target="_blank">
         <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" style="width: 24px;">
       </a>
-      <a href="https://instagram.com/seuusuario" target="_blank">
+      <a href="https://www.instagram.com/teeusada?igsh=NmMzZ3ZlazZsaXpi&utm_source=qr" target="_blank">
         <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" style="width: 24px;">
       </a>
     </div>

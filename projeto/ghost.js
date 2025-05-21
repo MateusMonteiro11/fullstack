@@ -1,34 +1,48 @@
 class Ghost {
-    constructor(x, y, width,
-        height,
-        speed,
-        imageX,
-        imageY,
-        imageWidth,
-        imageHeight,
-        range
+    constructor(
+        x, // Posição horizontal (x) inicial do fantasma no canvas
+        y, // Posição vertical (y) inicial do fantasma no canvas
+        width, // Largura do fantasma (usada para renderização e colisões)
+        height, // Altura do fantasma (idem acima)
+        speed, // Velocidade de movimento do fantasma
+        imageX, // Coordenada X da imagem do sprite (de onde cortar a imagem)
+        imageY, // Coordenada Y da imagem do sprite
+        imageWidth, // Largura do recorte da imagem do sprite
+        imageHeight, // Altura do recorte da imagem do sprite
+        range // Alcance de detecção do fantasma (usado na IA)
     ) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-        this.speed = speed;
-        this.direction = RIGHT;
-        this.imageX = imageX;
-        this.imageY = imageY;
-        this.imageWidth = imageWidth;
-        this.imageHeight = imageHeight;
-        this.range = range;
-        this.randomTargetIndex = parseInt(Math.random() * 4);
-        this.target = randomTargetsForGhosts[this.randomTargetIndex];
+        this.x = x; // Define a posição horizontal inicial
+        this.y = y; // Define a posição vertical inicial
+        this.width = width; // Define a largura usada para desenhar o fantasma
+        this.height = height; // Define a altura usada para desenhar o fantasma
+        this.speed = speed; // Define a velocidade de movimento do fantasma
+        this.direction = RIGHT; // Define a direção inicial (por padrão, para a direita)
+
+        // Informações para desenhar o sprite (fantasma) da imagem
+        this.imageX = imageX; // Posição X de corte na imagem
+        this.imageY = imageY; // Posição Y de corte na imagem
+        this.imageWidth = imageWidth; // Largura do corte
+        this.imageHeight = imageHeight; // Altura do corte
+
+        this.range = range; // Define o alcance de "visão" do fantasma para perseguir o jogador
+
+        // Escolhe aleatoriamente um ponto de destino inicial da lista de alvos aleatórios
+        this.randomTargetIndex = parseInt(Math.random() * 4); // Índice aleatório entre 0 e 3
+        this.target = randomTargetsForGhosts[this.randomTargetIndex]; // Define o alvo inicial do fantasma
+
+        // Define um intervalo para atualizar a direção do fantasma a cada 1 segundo
         this.changeDirectionInterval = setInterval(() => {
-            this.updateDirection();
+            this.updateDirection(); // Chama a função para atualizar a direção com base na lógica de IA
         }, 1000);
+
+        // Define outro intervalo que muda aleatoriamente o destino a cada 10 segundos
         setInterval(() => {
-            this.changeRandomDirection();
-        }, 10000)
+            this.changeRandomDirection(); // Chama a função que altera a direção aleatoriamente
+        }, 10000);
     }
 
+
+// Perseguição definida por range (Lógica utilizada para validar a perseguição do fantasma)
     isInRange() {
         let xDistance = Math.abs(pacman.getMapX() - this.getMapX());
         let yDistance = Math.abs(pacman.getMapY() - this.getMapY());
@@ -41,7 +55,7 @@ class Ghost {
         return false;
     }
 
-
+// Atualizar o movimento do fantasma
     updateDirection() {
     const directions = [UP, DOWN, LEFT, RIGHT];
     let bestDirection = this.direction;
@@ -82,6 +96,7 @@ class Ghost {
     this.direction = bestDirection;
 }
 
+// Lógica de movimento do fantasma
     move() {
         if (this.isInRange()) {
             this.target = pacman;;
@@ -96,12 +111,14 @@ class Ghost {
         }
     }
 
+// Mudar a direção para cada indice aleatório
     changeRandomDirection() {
         let addition = 1;
         this.randomTargetIndex += addition;
         this.randomTargetIndex = this.randomTargetIndex % 4;
     }
 
+// Adição à lógica de movimento (Movimentos dianteiros e traseiros para cada caso)
     moveBackward() {
         switch(this.direction) {
             case RIGHT: this.x -= this.speed; break;
@@ -120,6 +137,7 @@ class Ghost {
         }
     }
 
+// Check de colisões atribuídas através do elemento do mapa e condições matemáticas binárias
     checkCollisions() {
         return (
             map[Math.floor(this.y / blockSize)][Math.floor(this.x / blockSize)] === 1 ||
@@ -129,6 +147,7 @@ class Ghost {
         );
     }
 
+// Conceito para tomar o fantasma realizar tomadas de decisão com uma estratégia de autonomia de direção
     changeDirectionIfPossible() {
         let tempDirection = this.direction
             this.direction = this.calculateNewDirection(
@@ -160,9 +179,10 @@ class Ghost {
         } else {
             this.moveBackward();
         }
-        console.log(this.direction);
+        console.log(this.direction); // Testar o valor da direção do fantasma caso necessário
     }
 
+// Checa possibilidades de direcionamento do fantasma através da "neighborList"
     calculateNewDirection(map, destX, destY) {
         let mp = [];
         for (let i = 0; i < map.length; i++) {
@@ -194,6 +214,7 @@ class Ghost {
         return 1; // Direção
     }
 
+// Lógica complexa e avançada que define direção e traz autonomia para o fantasma
     addNeighbors(poped, mp) {
         let queue = [];
         let numOfRows = mp.length;
@@ -238,7 +259,8 @@ class Ghost {
         return queue;
     }
 
-     getMapX() {
+// Lógica do mapa e atualizando a mente do fantasma para condições de espaço
+    getMapX() {
         return Math.floor((this.x + this.width / 2) / blockSize);
     }
     getMapY() {
@@ -260,6 +282,7 @@ class Ghost {
             this.currentFrame == this.frameCount ? 1 : this.currentFrame + 1;
     }
 
+// Desenho do fantasma
     draw() {
         ctx.save();
         ctx.drawImage(
@@ -277,12 +300,14 @@ class Ghost {
     }
 }
 
+// Atualização dos fantasmas
     let updateGhosts = () => {
     for (let i = 0; i < ghosts.length; i++) {
         ghosts[i].move();
     }
 };
 
+// Desenhar os fantasmas
     let drawGhosts = () => {
     for (let i = 0; i < ghosts.length; i++) {
         ghosts[i].draw();

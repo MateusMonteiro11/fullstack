@@ -1,25 +1,39 @@
-const RIGHT = 4, UP = 3, LEFT = 2, DOWN = 1;
+const RIGHT = 4, UP = 3, LEFT = 2, DOWN = 1; // Somente dando valores para cada direção
 
 class Pacman {
-    constructor(x, y, width, height, speed) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-        this.speed = speed;
-        this.direction = RIGHT;
-        this.nextDirection = RIGHT;
-        this.currentFrame = 1;
-        this.frameCount = 7;
+    constructor(
+        x, // Posição inicial horizontal (x) de pacman no canvas
+        y, // Posição inicial vertical (y)
+        width, // Largura do sprite de pacman
+        height, // Altura do sprite de pacman
+        speed // Velocidade com que pacman se move
+    ) {
+        this.x = x; // Define a posição horizontal inicial
+        this.y = y; // Define a posição vertical inicial
+        this.width = width; // Define a largura de pacman para renderização/colisão
+        this.height = height; // Define a altura de pacman
+
+        this.speed = speed; // Velocidade de movimento de pacman
+
+        this.direction = RIGHT; // Direção atual em que pacman está se movendo (por padrão: direita)
+        this.nextDirection = RIGHT; // Direção que pacman tentará seguir a seguir (para suavizar controle do jogador)
+
+        this.currentFrame = 1; // Quadro atual da animação do sprite de pacman
+        this.frameCount = 7; // Número total de quadros da animação (por exemplo, para a "boca abrindo e fechando")
+
+        // Cria um intervalo que atualiza a animação de pacman a cada 100 milissegundos
         this.animationInterval = setInterval(() => this.updateAnimation(), 100);
     }
-    
+
+
+// Lógica do movimento
     move() {
         this.updateDirectionIfPossible();
         this.moveForward();
         if (this.checkCollisions()) this.moveBackward();
     }
-    
+
+// Atribuíndo existência para ação de comer do pacman com "row"(linha) e "col"(coluna)
     consume() {
     const row = Math.floor(this.y / blockSize);
     const col = Math.floor(this.x / blockSize);
@@ -29,6 +43,8 @@ class Pacman {
         updateScore(1); // <- aqui está a chave
     }
 }
+
+// Lógica do movimento traseiro
     moveBackward() {
         switch(this.direction) {
             case RIGHT: this.x -= this.speed; break;
@@ -37,6 +53,8 @@ class Pacman {
             case DOWN: this.y -= this.speed; break;
         }
     }
+
+// Lógica do movimento dianteiro
     moveForward() {
         switch(this.direction) {
             case RIGHT: this.x += this.speed; break;
@@ -45,6 +63,8 @@ class Pacman {
             case DOWN: this.y += this.speed; break;
         }
     }
+
+// Checador de colisões com atribuições matemáticas de acordo com o mapa
     checkCollisions() {
         return (
             map[Math.floor(this.y / blockSize)][Math.floor(this.x / blockSize)] === 1 ||
@@ -53,9 +73,13 @@ class Pacman {
             map[Math.floor((this.y + this.height - 1) / blockSize)][Math.floor((this.x + this.width - 1) / blockSize)] === 1
         );
     }
+
+// Checador de colisões com o fantasma
     checkCollisionWithGhosts(ghosts) {
         return ghosts.some(g => g.getMapX() === this.getMapX() && g.getMapY() === this.getMapY());
     }
+
+// Lógica de aplicar movimento caso não haja uma barreira, e mesmo se tiver o movimento será armazenado até o movimento ser possível
     updateDirectionIfPossible() {
         if (this.direction === this.nextDirection) return;
         const previousDirection = this.direction;
@@ -69,6 +93,7 @@ class Pacman {
         }
     }
 
+// Aplicando conceito de espaço para o pacman
     getMapX() {
         return Math.floor((this.x + this.width/2) / blockSize);
     }
@@ -84,9 +109,12 @@ class Pacman {
         return mapY;
     }
 
+// Atualizar a animação do pacman para abrir e fechar a boca de acordo com o sprite
     updateAnimation() {
         this.currentFrame = this.currentFrame === this.frameCount ? 1 : this.currentFrame + 1;
     }
+
+// Desenho do pacman
     draw() {
         ctx.save();
         ctx.translate(this.x + this.width / 2, this.y + this.height / 2);
