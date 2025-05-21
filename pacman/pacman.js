@@ -19,6 +19,7 @@ class Pacman {
         this.moveForward();
         if (this.checkCollisions()) this.moveBackward();
     }
+    
     consume() {
     const row = Math.floor(this.y / blockSize);
     const col = Math.floor(this.x / blockSize);

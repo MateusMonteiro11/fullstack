@@ -81,3 +81,48 @@ button {
     width: 80px;
     image-rendering: pixelated;
   }
+
+  #GameOver {
+  position: fixed; /* usar fixed em vez de absolute */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.85); /* fundo escuro */
+  z-index: 999;
+  font-family: 'Press Start 2P', cursive;
+  color: #ffeb3b;
+  text-align: center;
+}
+
+.GameOverContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+#Passou {
+  position: fixed; /* usar fixed em vez de absolute */ 
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.8); 
+  color: yellow; 
+  font-family: 'Press Start 2P', cursive;
+  font-size: 2rem; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  flex-direction: column;
+  text-align: center;
+  z-index: 1000;
+}
+
+.PassouContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}

@@ -1,12 +1,13 @@
 // Variáveis globais
 const blockSize = 20; // Tamanho de cada bloco
 const wallColor = "#342DCA"; // Cor das paredes
-const wallWidth = blockSize / 1.6; // Largura das paredes
+const wallWidth = blockSize / 1.4; // Largura das paredes
 const wallOffset = (blockSize - wallWidth) / 2; // Offset das paredes
 const FPS = 30; // Frames por segundo
 
 let score = 0; // Pontuação inicial
-let gameCompleted = false;
+let gameCompleted = false; // Atribuição para verificar se o jogo foi zerado.
+let isGameOver = false; // Atribuição para verificar se as vidas foram zeradas
 let lives = 3; // Vidas iniciais
 let map = [ // Mapa do jogo
     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
@@ -101,12 +102,15 @@ function updateGame() {
 }
 
 function restartGame() {
-    clearInterval(gameInterval); // para o jogo atual
+    clearInterval(gameInterval);
     score = 0;
     lives = 3;
     gameCompleted = false;
+    isGameOver = false;
 
-    // Recarrega o mapa original com todas as comidas
+    document.getElementById('GameOver').style.display = "none";
+    document.getElementById('Passou').style.display = "none";
+
     for (let i = 0; i < map.length; i++) {
         for (let j = 0; j < map[i].length; j++) {
             if (originalMap[i][j] === 2) {
@@ -117,35 +121,30 @@ function restartGame() {
 
     updateScoreDisplay();
     updateLivesDisplay();
-    startGame(); // reinicia o jogo
+    startGame();
 }
 
 
 function updateScore(points) {
-    if (gameCompleted) return;
+    score += points; // Atualiza o score
+    updateScoreDisplay();
 
-    score += points;
-    document.getElementById("score").textContent = "Score: " + score;
-
-    if (score >= 221) {
+    if (score >= 219) {
         gameCompleted = true;
-        setTimeout(() => {
-            alert("Parabéns! Você completou o jogo!");
-            restartGame(); // reinicia completamente
-        }, 100);
+        clearInterval(gameInterval); // Para o jogo
+        document.getElementById('Passou').style.display = "flex"; // Exibe tela de vitória
+        return;
     }
 }
+
 
 function handleGhostCollision() {
     lives--;
     updateLivesDisplay();
     if (lives <= 0) {
-        alert('Game Over! Final Score: ' + score);
-        restartGame();
-        score = 0;
-        lives = 3;
-        updateScoreDisplay();
-        updateLivesDisplay();
+        isGameOver = true;
+        clearInterval(gameInterval); // para o jogo
+        document.getElementById('GameOver').style.display = "flex";
         return;
     }
     resetPositions();
@@ -273,6 +272,7 @@ window.addEventListener('keydown', (event) => {
 function updateScoreDisplay() {
     document.getElementById('score').innerText = 'Score: ' + score;
 }
+
 function updateLivesDisplay() {
     document.getElementById('lives').innerText = 'Lives: ' + lives;
 }

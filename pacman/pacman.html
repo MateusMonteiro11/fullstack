@@ -8,6 +8,23 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
+    <div id="GameOver" style="display:none">
+    <div class="GameOverContent">
+      <h1>Game Over</h1>
+      <p>Você perdeu todas suas vidas tente novamente.</p>
+      <button onclick="restartGame()">Tentar de novo</button>
+    </div>
+    </div>
+
+    <div id="Passou" style="display:none">
+        <div class="PassouContent">
+            <h1>Você Passou !</h1>
+            <p>Parabéns você conseguiu completar o jogo !</p>
+            <button onclick="restartGame()">Reiniciar</button>
+        </div>
+    </div>
+
     <h1>Pac-Man</h1>
     <div id="scoreboard">
         <div id="score">Score: 0</div>
